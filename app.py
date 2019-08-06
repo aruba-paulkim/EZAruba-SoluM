@@ -6,6 +6,7 @@ app = Flask(__name__)
 allow_device_id = {
                    'C912B707-ED3D-490C-A154-B0C2A5E46189':{'name':'김민혁', 'company':'HPE Aruba', 'dept':'Korea SE'},
                    '769C0EF4-06D0-4FF4-BFAE-A5E104B88F1C':{'name':'조용운', 'company':'HPE Aruba', 'dept':'Korea SE'},
+                   '034C4B3C-A41E-4604-9F92-4B898DF41F65':{'name':'이동현', 'company':'랜오아시스', 'dept':''},
                    'D9B9F9A4-1CF5-4871-8945-B749E50D95D7':{'name':'갤럭시텝A', 'company':'HPE Aruba', 'dept':'Korea SE'},
                    'B312HB12':{'name':'정우성', 'company':'HPE Aruba', 'dept':'Meridian'},
                   }
