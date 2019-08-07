@@ -1,0 +1,11 @@
+{
+"system_name":"Aruba Meridian - Solu-M API Middleware",
+"solum_meeting_enter":"##company## ##name##님\n여기는 SmartWorkPlace 입니다.",
+"solum_meeting_exit":"반갑습니다.\n여기는 SmartWorkPlace 입니다.",
+"meridian_meeting_enter":"##company## ##name##님\\n여기는 SmartWorkPlace 입니다.",
+"meridian_meeting_exit":"##company## ##name##님\\n안녕히 가세요.",
+"solum_work_enter":"##company## ##name##님\n여기는 MeetingRoom 입니다.",
+"solum_work_exit":"반갑습니다.\n여기는 MeetingRoom 입니다.",
+"meridian_work_enter":"##company## ##name##님\\n여기는 MeetingRoom 입니다.",
+"meridian_work_exit":"##company## ##name##님\\n안녕히 가세요."
+}

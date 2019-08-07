@@ -1,15 +1,10 @@
-from flask import Flask, request
+from flask import Flask, request, json
 import requests
 
 app = Flask(__name__)
 
-allow_device_id = {
-                   'C912B707-ED3D-490C-A154-B0C2A5E46189':{'name':'김민혁', 'company':'HPE Aruba', 'dept':'Korea SE'},
-                   '769C0EF4-06D0-4FF4-BFAE-A5E104B88F1C':{'name':'조용운', 'company':'HPE Aruba', 'dept':'Korea SE'},
-                   '034C4B3C-A41E-4604-9F92-4B898DF41F65':{'name':'이동현', 'company':'랜오아시스', 'dept':''},
-                   'D9B9F9A4-1CF5-4871-8945-B749E50D95D7':{'name':'갤럭시텝A', 'company':'HPE Aruba', 'dept':'Korea SE'},
-                   'B312HB12':{'name':'정우성', 'company':'HPE Aruba', 'dept':'Meridian'},
-                  }
+allow_device_id = {}
+inform_str = {}
 
 def apicall(display_id, display_str):
     headers = {'content-type': 'application/json'}
@@ -23,6 +18,7 @@ def apicall(display_id, display_str):
         r = requests.post(url, headers=headers, json=payload)
         r.raise_for_status()
         response = r.json()
+        print(response)
         return response
     except Exception as e:
         error_message = r.json()
@@ -33,7 +29,8 @@ def apicall(display_id, display_str):
 
 @app.route('/')
 def index():
-    return 'Aruba Meridian - Solu-M API Middleware'
+    return inform_str['system_name']
+
 
 @app.route('/api/meridian', methods=['GET', 'POST'])
 def meridian():
@@ -49,34 +46,43 @@ def meridian():
 
     #EZ-Work-Enter
     if "5679487262654464" == request.form['campaign_id'] :
-        display_id = 11
-        display_str = info['company']+' '+info['name']+'님\n여기는 SmartWorkPlace 입니다.'
+        display_id = '11'
+        display_str = inform_str['solum_work_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
         response = apicall(display_id, display_str)
-        res = '{"notification":{"title": "EZ Aruba","message": "'+info['company']+' '+info['name']+'님\\n여기는 SmartWorkPlace 입니다.","path": ""}}'
+        meridian_str = inform_str['meridian_work_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
+        res = '{"notification":{"title": "EZ Aruba","message": "'+meridian_str+'","path": ""}}'
 
     #EZ-Work-Exit
     elif "5355508601716736" == request.form['campaign_id'] :
-        display_id = 11
-        display_str = '반갑습니다.\n여기는 SmartWorkPlace 입니다.'
+        display_id = '11'
+        display_str = inform_str['solum_work_exit']
         response = apicall(display_id, display_str)
-        res = '{"notification":{"title": "EZ Aruba","message": "'+info['company']+' '+info['name']+'님\\n안녕히가세요.","path": ""}}'
+        meridian_str = inform_str['meridian_work_exit'].replace('##company##',info['company']).replace('##name##',info['name'])
 
     #EZ-Meeting-Enter
     elif "5555948702400512" == request.form['campaign_id'] :
-        display_id = 12
-        display_str = info['company']+' '+info['name']+'님\n여기는 MeetingRoom 입니다.'
+        display_id = '12'
+        display_str = inform_str['solum_meeting_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
         response = apicall(display_id, display_str)
-        res = '{"notification":{"title": "EZ Aruba","message": "'+info['company']+' '+info['name']+'님\\n여기는 MeetingRoom 입니다.","path": ""}}'
+        meridian_str = inform_str['meridian_meeting_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
 
     #EZ-Meeting-Exit
     elif "4908345245564928" == request.form['campaign_id'] :
-        display_id = 12
-        display_str = '환영합니다\n여기는 MeetingRoom 입니다.'
+        display_id = '12'
+        display_str = inform_str['solum_meeting_exit']
         response = apicall(display_id, display_str)
-        res = '{"notification":{"title": "EZ Aruba","message": "'+info['company']+' '+info['name']+'님\\n안녕히가세요","path": ""}}'
+        meridian_str = inform_str['meridian_meeting_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
 
-    return res
+    else : 
+        print('There is no campaign_id...')
+
+    return '{"notification":{"title": "EZ Aruba","message": "'+meridian_str+'","path": ""}}'
 
 
 if __name__ == '__main__':
+
+    with open('allow_device_id.txt') as data_file:
+        allow_device_id = json.load(data_file)
+    with open('inform_str.txt') as data_file:
+        inform_str = json.load(data_file)
     app.run(host='0.0.0.0', port=8080, debug=True)
