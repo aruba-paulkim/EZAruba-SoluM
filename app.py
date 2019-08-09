@@ -3,8 +3,11 @@ import requests
 
 app = Flask(__name__)
 
-allow_device_id = {}
-inform_str = {}
+with open('allow_device_id.txt', encoding='utf-8-sig') as data_file:
+    allow_device_id = json.load(data_file)
+with open('inform_str.txt', encoding='utf-8-sig') as data_file:
+    inform_str = json.load(data_file)
+
 
 def apicall(display_id, display_str):
     headers = {'content-type': 'application/json'}
@@ -18,7 +21,6 @@ def apicall(display_id, display_str):
         r = requests.post(url, headers=headers, json=payload)
         r.raise_for_status()
         response = r.json()
-        print(response)
         return response
     except Exception as e:
         error_message = r.json()
@@ -38,7 +40,6 @@ def meridian():
     req_device_id = request.form['device_id'][0:36].upper()
     try:
         info = allow_device_id[req_device_id]
-        print(info)
     except Exception as e:
         #print(e)
         print("unknown device_id : "+request.form['device_id'])
@@ -47,31 +48,34 @@ def meridian():
     #EZ-Work-Enter
     if "5679487262654464" == request.form['campaign_id'] :
         display_id = '11'
-        display_str = inform_str['solum_work_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
+        display_str = inform_str['solum_work_enter'].replace('##name##',info['name'])
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_work_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
-        res = '{"notification":{"title": "EZ Aruba","message": "'+meridian_str+'","path": ""}}'
+        meridian_str = inform_str['meridian_work_enter'].replace('##name##',info['name'])
+        print("EZ-Work-Enter / " + info['name'] + " / "+response['Header']['ResultCode'])
 
     #EZ-Work-Exit
     elif "5355508601716736" == request.form['campaign_id'] :
         display_id = '11'
         display_str = inform_str['solum_work_exit']
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_work_exit'].replace('##company##',info['company']).replace('##name##',info['name'])
+        meridian_str = inform_str['meridian_work_exit'].replace('##name##',info['name'])
+        print("EZ-Work-Exit / " + info['name'] + " / "+response['Header']['ResultCode'])
 
     #EZ-Meeting-Enter
     elif "5555948702400512" == request.form['campaign_id'] :
         display_id = '12'
-        display_str = inform_str['solum_meeting_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
+        display_str = inform_str['solum_meeting_enter'].replace('##name##',info['name'])
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_meeting_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
+        meridian_str = inform_str['meridian_meeting_enter'].replace('##name##',info['name'])
+        print("EZ-Meeting-Enter / " + info['name'] + " / "+response['Header']['ResultCode'])
 
     #EZ-Meeting-Exit
     elif "4908345245564928" == request.form['campaign_id'] :
         display_id = '12'
         display_str = inform_str['solum_meeting_exit']
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_meeting_exit'].replace('##company##',info['company']).replace('##name##',info['name'])
+        meridian_str = inform_str['meridian_meeting_exit'].replace('##name##',info['name'])
+        print("EZ-Meeting-Exit / " + info['name'] + " / "+response['Header']['ResultCode'])
 
     else : 
         print('There is no campaign_id...')
@@ -80,9 +84,4 @@ def meridian():
 
 
 if __name__ == '__main__':
-
-    with open('allow_device_id.txt', encoding='utf-8-sig') as data_file:
-        allow_device_id = json.load(data_file)
-    with open('inform_str.txt', encoding='utf-8-sig') as data_file:
-        inform_str = json.load(data_file)
     app.run(host='0.0.0.0', port=8080, debug=True)
