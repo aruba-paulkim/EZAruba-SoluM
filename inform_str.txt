@@ -1,11 +1,11 @@
 {
 "system_name":"Aruba Meridian - Solu-M API Middleware",
-"solum_meeting_enter":"##company## ##name##님\n여기는 SmartWorkPlace 입니다.",
-"solum_meeting_exit":"반갑습니다.\n여기는 SmartWorkPlace 입니다.",
-"meridian_meeting_enter":"##company## ##name##님\\n여기는 SmartWorkPlace 입니다.",
-"meridian_meeting_exit":"##company## ##name##님\\n안녕히 가세요.",
-"solum_work_enter":"##company## ##name##님\n여기는 MeetingRoom 입니다.",
-"solum_work_exit":"반갑습니다.\n여기는 MeetingRoom 입니다.",
-"meridian_work_enter":"##company## ##name##님\\n여기는 MeetingRoom 입니다.",
-"meridian_work_exit":"##company## ##name##님\\n안녕히 가세요."
+"solum_meeting_enter":"##name##님이\n\nMeetingRoom을\n\n사용중입니다.",
+"solum_meeting_exit":"반갑습니다.\n\nMeetingRoom\n\n입니다.",
+"meridian_meeting_enter":"##name##님이\\nMeetingRoom에 입장하셨습니다.",
+"meridian_meeting_exit":"##name##님이\\nMeetingRoom에서 나가셨습니다.",
+"solum_work_enter":"##name##님이\n\nWorkPlace를\n\n사용중입니다.",
+"solum_work_exit":"반갑습니다.\n\nWorkPlace\n\n입니다.",
+"meridian_work_enter":"##name##님\\nWorkPlace에 입장하셨습니다.",
+"meridian_work_exit":"##name##님\\nWorkPlace에 나가셨습니다."
 }

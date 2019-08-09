@@ -71,7 +71,7 @@ def meridian():
         display_id = '12'
         display_str = inform_str['solum_meeting_exit']
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_meeting_enter'].replace('##company##',info['company']).replace('##name##',info['name'])
+        meridian_str = inform_str['meridian_meeting_exit'].replace('##company##',info['company']).replace('##name##',info['name'])
 
     else : 
         print('There is no campaign_id...')
@@ -81,8 +81,8 @@ def meridian():
 
 if __name__ == '__main__':
 
-    with open('allow_device_id.txt') as data_file:
+    with open('allow_device_id.txt', encoding='utf-8-sig') as data_file:
         allow_device_id = json.load(data_file)
-    with open('inform_str.txt') as data_file:
+    with open('inform_str.txt', encoding='utf-8-sig') as data_file:
         inform_str = json.load(data_file)
     app.run(host='0.0.0.0', port=8080, debug=True)
