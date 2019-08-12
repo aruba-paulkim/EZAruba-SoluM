@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p {
+    border: 2px solid black;
+    outline: #ED9D56 solid 10px;
+    margin: auto;
+    padding: 100px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 40px;
+}
+</style>
+<script src="{{ url_for('static', filename='ajax.js') }}" language="JavaScript" type="text/javascript"></script>
+<script>
+new Ajax.PeriodicalUpdater("contents","/show",{frequency:2,decay:1})
+</script>
+</head>
+<body>
+
+<div align="center"><font size="10">EZ Aruba Meeting Room</font><br><br></div>
+<p id="contents"></p>
+</body>
+</html>

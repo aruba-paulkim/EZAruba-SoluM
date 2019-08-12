@@ -1,4 +1,5 @@
-from flask import Flask, request, json
+# -*- coding: utf-8 -*-
+from flask import Flask, request, json, render_template
 import requests
 
 app = Flask(__name__)
@@ -33,6 +34,17 @@ def apicall(display_id, display_str):
 def index():
     return inform_str['system_name']
 
+@app.route('/show', methods=['GET', 'POST'])
+def show():
+    if request.method == 'GET' :
+        return render_template("show.html")
+    elif request.method == 'POST' :
+        fd = open("static/show.txt", 'r')
+        contents =fd.read()
+        fd.close()
+        return contents
+    else :
+        return ''
 
 @app.route('/api/meridian', methods=['GET', 'POST'])
 def meridian():
@@ -79,6 +91,10 @@ def meridian():
 
     else : 
         print('There is no campaign_id...')
+
+    fd = open("static/show.txt", "w")
+    fd.write(meridian_str+"\n")
+    fd.close()
 
     return '{"notification":{"title": "EZ Aruba","message": "'+meridian_str+'","path": ""}}'
 
