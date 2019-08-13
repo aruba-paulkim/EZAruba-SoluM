@@ -9,8 +9,14 @@ p {
     padding: 100px;
     text-align: center;
     letter-spacing: 2px;
-    font-size: 40px;
+    font-size: 70px;
 }
+div {
+    padding: 30px;
+    text-align: center;
+    font-size: 70px;   
+}
+
 </style>
 <script src="{{ url_for('static', filename='ajax.js') }}" language="JavaScript" type="text/javascript"></script>
 <script>
@@ -19,7 +25,7 @@ new Ajax.PeriodicalUpdater("contents","/show/meetingroom",{frequency:2,decay:1})
 </head>
 <body>
 
-<div align="center"><font size="10">EZ Aruba Meeting Room</font><br><br></div>
+<div>EZ Aruba Meeting Room</div>
 <p id="contents"></p>
 </body>
 </html>
