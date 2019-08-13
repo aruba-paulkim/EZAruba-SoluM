@@ -84,7 +84,7 @@ def meridian():
         meridian_str = inform_str['meridian_meeting_enter'].replace('##name##',info['name'])
         print("EZ-Meeting-Enter / " + info['name'] + " / "+response['Header']['ResultCode'])
         fd = open("static/show-meetingroom.txt", "w")
-        fd.write(meridian_str.replace("\\n","<br><br>"))
+        fd.write(display_str.replace("\\n","<br><br>"))
         fd.close()
 
     #EZ-Meeting-Exit
@@ -95,7 +95,7 @@ def meridian():
         meridian_str = inform_str['meridian_meeting_exit'].replace('##name##',info['name'])
         print("EZ-Meeting-Exit / " + info['name'] + " / "+response['Header']['ResultCode'])
         fd = open("static/show-meetingroom.txt", "w")
-        fd.write(meridian_str.replace("\\n","<br><br>"))
+        fd.write(display_str.replace("\\n","<br><br>"))
         fd.close()
 
     else : 
