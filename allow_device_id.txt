@@ -1,11 +1,3 @@
 {
-"C912B707-ED3D-490C-A154-B0C2A5E46189":{"name":"김민혁", "company":"HPE Aruba", "dept":"Korea SE"},
-"769C0EF4-06D0-4FF4-BFAE-A5E104B88F1C":{"name":"조용운", "company":"HPE Aruba", "dept":"Korea SE"},
-"1460EBD8-1670-44C6-B639-4B09F97CC7E2":{"name":"한창훈", "company":"HPE Aruba", "dept":"Korea SE"},
-"569FC749-1265-4E14-9632-B290A65AD76E":{"name":"이한민", "company":"HPE Aruba", "dept":"Korea SE"},
-"A39D4F62-5BCE-4885-BF09-69DAD18B4EB3":{"name":"홍진표", "company":"HPE Aruba", "dept":"Korea SE"},
-"74BB2245-B669-4242-8A79-0F131B5585C1":{"name":"김태성", "company":"HPE Aruba", "dept":"Korea SE"},
-"034C4B3C-A41E-4606-9F92-4B898DF41F65":{"name":"이동현", "company":"랜오아시스", "dept":""},
-"D9B9F9A4-1CF5-4871-8945-B749E50D95D7":{"name":"갤럭시텝A", "company":"HPE Aruba", "dept":"Korea SE"},
 "B312HB12":{"name":"정우성", "company":"HPE Aruba", "dept":"Meridian"}
 }
