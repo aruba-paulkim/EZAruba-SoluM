@@ -14,7 +14,7 @@ p {
 </style>
 <script src="{{ url_for('static', filename='ajax.js') }}" language="JavaScript" type="text/javascript"></script>
 <script>
-new Ajax.PeriodicalUpdater("contents","/show",{frequency:2,decay:1})
+new Ajax.PeriodicalUpdater("contents","/show/meetingroom",{frequency:2,decay:1})
 </script>
 </head>
 <body>

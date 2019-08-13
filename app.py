@@ -34,14 +34,17 @@ def apicall(display_id, display_str):
 def index():
     return inform_str['system_name']
 
-@app.route('/show', methods=['GET', 'POST'])
-def show():
+@app.route('/show/<location>', methods=['GET', 'POST'])
+def show(location):
     if request.method == 'GET' :
         return render_template("show.html")
     elif request.method == 'POST' :
-        fd = open("static/show.txt", 'r')
-        contents =fd.read()
-        fd.close()
+        if location == "meetingroom" : 
+            fd = open("static/show-"+location+".txt", 'r')
+            contents =fd.read()
+            fd.close()
+        else :
+            contents = ""
         return contents
     else :
         return ''
@@ -80,6 +83,9 @@ def meridian():
         response = apicall(display_id, display_str)
         meridian_str = inform_str['meridian_meeting_enter'].replace('##name##',info['name'])
         print("EZ-Meeting-Enter / " + info['name'] + " / "+response['Header']['ResultCode'])
+        fd = open("static/show-meetingroom.txt", "w")
+        fd.write(meridian_str.replace("\\n","<br><br>"))
+        fd.close()
 
     #EZ-Meeting-Exit
     elif "4908345245564928" == request.form['campaign_id'] :
@@ -88,13 +94,13 @@ def meridian():
         response = apicall(display_id, display_str)
         meridian_str = inform_str['meridian_meeting_exit'].replace('##name##',info['name'])
         print("EZ-Meeting-Exit / " + info['name'] + " / "+response['Header']['ResultCode'])
+        fd = open("static/show-meetingroom.txt", "w")
+        fd.write(meridian_str.replace("\\n","<br><br>"))
+        fd.close()
 
     else : 
         print('There is no campaign_id...')
 
-    fd = open("static/show.txt", "w")
-    fd.write(meridian_str+"\n")
-    fd.close()
 
     return '{"notification":{"title": "EZ Aruba","message": "'+meridian_str+'","path": ""}}'
 
