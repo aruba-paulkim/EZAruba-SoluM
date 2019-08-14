@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head>
-<style>
-p {
-    border: 2px solid black;
-    outline: #ED9D56 solid 10px;
-    margin: auto;
-    padding: 100px;
-    text-align: center;
-    letter-spacing: 2px;
-    font-size: 70px;
-}
-div {
-    padding: 30px;
-    text-align: center;
-    font-size: 70px;   
-}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EZ Aruba Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='ajax.js') }}" language="JavaScript" type="text/javascript"></script>
+    <script>
+    new Ajax.PeriodicalUpdater("contents","/show/meetingroom",{frequency:2,decay:1})
+    </script>
 
-</style>
-<script src="{{ url_for('static', filename='ajax.js') }}" language="JavaScript" type="text/javascript"></script>
-<script>
-new Ajax.PeriodicalUpdater("contents","/show/meetingroom",{frequency:2,decay:1})
-</script>
-</head>
-<body>
-
-<div>EZ Aruba Meeting Room</div>
-<p id="contents"></p>
-</body>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    </head>
+    <body>
+    <header>
+        <div class="container text-center">
+            <div class="fh5co-navbar-brand">
+                <p id="contents" class="fh5co-logo">EZ Aruba MeetingRoom</p>
+            </div>
+        </div>
+    </header>
+    </body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>EZ Aruba Demo Setup</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	</head>
+	<body>
+	<header>
+		<div class="container text-center">
+			<div class="fh5co-navbar-brand">
+				<a class="fh5co-logo" href="/logout">EZ Aruba Demo Setup</a>
+			</div>
+		</div>
+	</header>
+	<div id="fh5co-contact-section">
+		<div class="container text-center">
+			<div class="row">
+				<form method="post" action="/login">
+				<div class="col-md-6">
+					<div class="form-group">
+						<input type="text" name="admin_id" class="form-control" placeholder="Admin ID">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<input type="password"  name="admin_pw" class="form-control" placeholder="Admin PW">
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<input type="submit" value="Login" class="btn btn-primary">
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
+

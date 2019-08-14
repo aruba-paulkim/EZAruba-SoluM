@@ -1,3 +1,0 @@
-{
-"B312HB12":{"name":"정우성", "company":"HPE Aruba", "dept":"Meridian"}
-}
