@@ -130,7 +130,7 @@ def meridian():
 
     con = sqlite3.connect('database.db')
     cur = con.cursor()
-    cur.execute("select * from allowed_device where enable_YN ='Y' and device_id=?", req_device_id)
+    cur.execute("select * from allowed_device where enable_YN =? and device_id=?", ('Y',req_device_id))
     rows = cur.fetchall()
     if len(rows) > 0 : 
         info = rows[0]
@@ -141,28 +141,28 @@ def meridian():
     #EZ-Work-Enter
     if "5679487262654464" == request.form['campaign_id'] :
         display_id = '11'
-        display_str = inform_str['solum_work_enter'].replace('##name##',info['user_name'])
+        display_str = inform_str['solum_work_enter'].replace('##name##',info[2])
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_work_enter'].replace('##name##',info['user_name'])
-        print("EZ-Work-Enter / " + info['user_name'] + " / "+response['Header']['ResultCode'])
+        meridian_str = inform_str['meridian_work_enter'].replace('##name##',info[2])
+        print("EZ-Work-Enter / " + info[2] + " / "+response['Header']['ResultCode'] + " / "+meridian_str)
 
     #EZ-Work-Exit
     elif "5355508601716736" == request.form['campaign_id'] :
         display_id = '11'
         display_str = inform_str['solum_work_exit']
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_work_exit'].replace('##name##',info['user_name'])
-        print("EZ-Work-Exit / " + info['user_name'] + " / "+response['Header']['ResultCode'])
+        meridian_str = inform_str['meridian_work_exit'].replace('##name##',info[2])
+        print("EZ-Work-Exit / " + info[2] + " / "+response['Header']['ResultCode'] + " / "+meridian_str)
 
     #EZ-Meeting-Enter
     elif "5555948702400512" == request.form['campaign_id'] :
         display_id = '12'
-        display_str = inform_str['solum_meeting_enter'].replace('##name##',info['user_name'])
+        display_str = inform_str['solum_meeting_enter'].replace('##name##',info[2])
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_meeting_enter'].replace('##name##',info['user_name'])
-        print("EZ-Meeting-Enter / " + info['user_name'] + " / "+response['Header']['ResultCode'])
+        meridian_str = inform_str['meridian_meeting_enter'].replace('##name##',info[2])
+        print("EZ-Meeting-Enter / " + info[2] + " / "+response['Header']['ResultCode'] + " / "+meridian_str)
         fd = open("static/show-meetingroom.txt", "w")
-        fd.write(display_str.replace("\n","<br>"))
+        fd.write(meridian_str.replace("\\n","<br>"))
         fd.close()
 
     #EZ-Meeting-Exit
@@ -170,10 +170,10 @@ def meridian():
         display_id = '12'
         display_str = inform_str['solum_meeting_exit']
         response = apicall(display_id, display_str)
-        meridian_str = inform_str['meridian_meeting_exit'].replace('##name##',info['user_name'])
-        print("EZ-Meeting-Exit / " + info['user_name'] + " / "+response['Header']['ResultCode'])
+        meridian_str = inform_str['meridian_meeting_exit'].replace('##name##',info[2])
+        print("EZ-Meeting-Exit / " + info[2] + " / "+response['Header']['ResultCode'] + " / "+meridian_str)
         fd = open("static/show-meetingroom.txt", "w")
-        fd.write(display_str.replace("\n","<br>"))
+        fd.write(meridian_str.replace("\\n","<br>"))
         fd.close()
 
     else : 
@@ -185,4 +185,4 @@ def meridian():
 
 if __name__ == '__main__':
     
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=False)
