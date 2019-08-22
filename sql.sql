@@ -20,5 +20,5 @@ INSERT INTO allowed_device ('seq','device_id','user_name','enable_YN') VALUES (6
 INSERT INTO allowed_device ('seq','device_id','user_name','enable_YN') VALUES (7,'D9B9F9A4-1CF5-4871-8945-B749E50D95D7','tab','Y');
 INSERT INTO allowed_device ('seq','device_id','user_name','enable_YN') VALUES (8,'B312HB12','jung','Y');
 INSERT INTO allowed_device ('seq','device_id','user_name','enable_YN') VALUES (9,'11111','matt','Y');
-INSERT INTO allowed_device ('seq','device_id','user_name','enable_YN') VALUES (10,'22222','TS','Y');
+INSERT INTO allowed_device ('seq','device_id','user_name','enable_YN') VALUES (1,'74BB2245-B669-4242-8A79-0F131B5585C1','TS','Y');
 
