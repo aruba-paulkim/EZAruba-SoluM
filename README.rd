@@ -9,3 +9,7 @@ pip install -r requirements.txt
 
 2. Run
 python app.py
+
+![](static/images/screencapture1.png)
+![](static/images/screencapture2.png)
+![](static/images/screencapture3.png)
