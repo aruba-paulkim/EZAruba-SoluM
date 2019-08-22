@@ -5,13 +5,15 @@ import requests, sqlite3
 app = Flask(__name__)
 app.secret_key = b'aruba1234567890'
 
+SoluM_Server_IP = "0.0.0.0"
+
 with open('inform_str.txt', encoding='utf-8-sig') as data_file:
     inform_str = json.load(data_file)
 
 
 def apicall(display_id, display_str):
     headers = {'content-type': 'application/json'}
-    url = 'http://192.168.99.212/inf/updateProductInfo'
+    url = 'http://'+SoluM_Server_IP+'/inf/updateProductInfo'
     payload = {'Header':{'StoreCode':'1038'},'Body':{'PRODUCT':[{'ITEM_ID':display_id,'ITEM_NAME':display_str,
                'ALIAS':'','SALE_PRICE':1101,'SALE_PRICE_DECIMAL':'00','LIST_PRICE':0,'LIST_PRICE_DECIMAL':'00',
                'UNIT_PRICE':0,'UNIT_PRICE_DECIMAL':'00','ORIGIN':'','MANUFACTURER':'','TYPE':'','WEIGHT':'','WEIGHT_UNIT':'',
